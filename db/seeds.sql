@@ -6,14 +6,14 @@ VALUES
 ('Public Relations'),
 ('Marketing');
 
-INSERT INTO roles (description)
+INSERT INTO roles (description, salary)
 VALUES
-('Chief Redundancy Officer'),
-('Vice President of Redundancy'),
-('Assistant to the Vice President of Redundancy'),
-('Janitor'),
-('Social Media Curator'),
-('Silver Tongued Devil');
+('Chief Redundancy Officer', '$150,000/year'),
+('Vice President of Redundancy', '$120,000/year'),
+('Assistant to the Vice President of Redundancy', '$90,000/year'),
+('Janitor', '$25,000/year'),
+('Social Media Curator', '$60,000/year'),
+('Silver Tongued Devil', '$85,000/year');
 
 INSERT INTO employees (first_name, last_name, email)
 VALUES
@@ -23,4 +23,4 @@ VALUES
 ('Jessica', 'Hartford', 'JHart44@gmail.com'),
 ('Michael', 'Krieger', 'MikeKrieger102@yahoo.com'),
 ('Louis', 'Ryan', 'LLRyanCo@Mailchimp.net'),
-('Elizabeth', 'Depallier', 'EDepallier11@gmail.com');
+('Elizabeth', 'Depailler', 'EDepailler11@gmail.com');
