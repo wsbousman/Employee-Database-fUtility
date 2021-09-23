@@ -56,14 +56,25 @@ const departmentView = () => {
       if(err){console.error(err)}
       if(rows){console.table(rows)}
     });
+    menuPrompt();
 }
 
 const rolesView = () => {
-    console.log('test')
+    const sql = 'SELECT * FROM roles';
+    db.query(sql, (err, rows) => {
+      if(err){console.error(err)}
+      if(rows){console.table(rows)}
+    });
+    menuPrompt();
 }
 
 const employeesView = () => {
-    console.log('test')
+    const sql = 'SELECT * FROM employees';
+    db.query(sql, (err, rows) => {
+      if(err){console.error(err)}
+      if(rows){console.table(rows)}
+    });
+    menuPrompt();
 }
 
 const departmentPost = () => {
