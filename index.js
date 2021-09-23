@@ -2,6 +2,8 @@ const inquirer = require('inquirer');
 const fs = require('fs');
 const cTable = require('console.table');
 const mysql = require('mysql2');
+const db = require('./db/connection');
+/*
 const db = mysql.createConnection(
     {
       host: 'localhost',
@@ -12,6 +14,7 @@ const db = mysql.createConnection(
       database: 'company'
     },
   );
+*/
 
 const menuPrompt = () => {
     inquirer.prompt([
@@ -48,16 +51,11 @@ const menuPrompt = () => {
 }
 
 const departmentView = () => {
-    /*
-    console.table();
-    */
     const sql = 'SELECT * FROM departments';
     db.query(sql, (err, rows) => {
-       return json({
-          message: 'success',
-          data: rows
-        });
-      });
+      if(err){console.error(err)}
+      if(rows){console.table(rows)}
+    });
 }
 
 const rolesView = () => {

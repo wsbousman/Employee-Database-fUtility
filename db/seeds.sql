@@ -1,3 +1,5 @@
+USE company;
+
 INSERT INTO departments (name)
 VALUES
 ('Department of Bureaucracy'),
