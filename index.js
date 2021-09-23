@@ -39,4 +39,28 @@ const departmentView = () => {
     console.log('test')
 }
 
+const rolesView = () => {
+    console.log('test')
+}
+
+const employeesView = () => {
+    console.log('test')
+}
+
+const departmentPost = () => {
+    console.log('test')
+}
+
+const rolePost = () => {
+    console.log('test')
+}
+
+const employeePost = () => {
+    console.log('test')
+}
+
+const employeePut = () => {
+    console.log('test')
+}
+
 menuPrompt();
