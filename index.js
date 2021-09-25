@@ -74,7 +74,6 @@ const departmentPost = () => {
         }
     ]).then((answer) => {
         const sql = `INSERT INTO departments (name) VALUES ('${answer.departmentName}')`;
-        console.log(answer.departmentName);
         const params = [answer];
         db.query(sql, params, (err, result) => {
             if (err) {
@@ -87,16 +86,70 @@ const departmentPost = () => {
               data: body
             });
           });
-          // return to main menu
           }).then(menuPrompt)
 }
 
 const rolePost = () => {
-    console.log('test')
+    inquirer.prompt([
+        {
+          type: 'input',
+          name: 'roleName',
+          message: 'What is the title of the role you would like to add?'
+        },
+        {
+            type: 'input',
+            name: 'roleSalary',
+            message: 'What is the salary for this role?'
+          }
+    ]).then((answer) => {
+        const sql = `INSERT INTO roles (description, salary) VALUES ('${answer.roleName}', '${answer.roleSalary}')`;
+        const params = [answer];
+        db.query(sql, params, (err, result) => {
+            if (err) {
+                console.log(err);
+            res.status(400).json({ error: err.message });
+            return;
+            }
+            res.json({
+              message: 'success',
+              data: body
+            });
+          });
+          }).then(menuPrompt)
 }
 
 const employeePost = () => {
-    console.log('test')
+    inquirer.prompt([
+        {
+          type: 'input',
+          name: 'employeeFirstName',
+          message: 'What is their first name?'
+        },
+        {
+          type: 'input',
+          name: 'employeeLastName',
+          message: 'What is their last name?'
+        },
+        {
+          type: 'input',
+          name: 'employeeEmail',
+          message: 'What is their email?'
+        }
+    ]).then((answer) => {
+        const sql = `INSERT INTO employees (first_name, last_name, email) VALUES ('${answer.employeeFirstName}', '${answer.employeeLastName}', '${answer.employeeEmail}')`;
+        const params = [answer];
+        db.query(sql, params, (err, result) => {
+            if (err) {
+                console.log(err);
+            res.status(400).json({ error: err.message });
+            return;
+            }
+            res.json({
+              message: 'success',
+              data: body
+            });
+          });
+          }).then(menuPrompt)
 }
 
 const employeePut = () => {
