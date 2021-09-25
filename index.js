@@ -3,18 +3,6 @@ const fs = require('fs');
 const cTable = require('console.table');
 const mysql = require('mysql2');
 const db = require('./db/connection');
-/*
-const db = mysql.createConnection(
-    {
-      host: 'localhost',
-      // Your MySQL username,
-      user: 'root',
-      // Your MySQL password
-      password: 'mysqlauthstring',
-      database: 'company'
-    },
-  );
-*/
 
 const menuPrompt = () => {
     inquirer.prompt([
@@ -78,7 +66,28 @@ const employeesView = () => {
 }
 
 const departmentPost = () => {
-    console.log('test')
+    inquirer.prompt([
+        {
+          type: 'input',
+          name: 'departmentName',
+          message: 'What is the name of the department you would like to add?'
+        }
+    ]).then((answer) => {
+        const sql = `INSERT INTO departments (name)
+        VALUES (?)`;
+        const params = [answer];
+        db.query(sql, params, (err, result) => {
+            if (err) {
+            res.status(400).json({ error: err.message });
+            return;
+            }
+            res.json({
+              message: 'success',
+              data: body
+            });
+          });
+          // return to main menu
+          }).then(menuPrompt)
 }
 
 const rolePost = () => {
@@ -93,4 +102,4 @@ const employeePut = () => {
     console.log('test')
 }
 
-menuPrompt();
+menuPrompt()
