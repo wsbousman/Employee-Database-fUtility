@@ -73,11 +73,12 @@ const departmentPost = () => {
           message: 'What is the name of the department you would like to add?'
         }
     ]).then((answer) => {
-        const sql = `INSERT INTO departments (name)
-        VALUES (?)`;
+        const sql = `INSERT INTO departments (name) VALUES ('${answer.departmentName}')`;
+        console.log(answer.departmentName);
         const params = [answer];
         db.query(sql, params, (err, result) => {
             if (err) {
+                console.log(err);
             res.status(400).json({ error: err.message });
             return;
             }
@@ -99,7 +100,16 @@ const employeePost = () => {
 }
 
 const employeePut = () => {
-    console.log('test')
-}
+    const sql = `UPDATE employees SET role = ? 
+                 WHERE id = ?`;
+    const params = [req.body.party_id, req.params.id];
+    db.query(sql, params, (err, result) => {
+        res.json({
+          message: 'success',
+          data: req.body,
+          changes: result.affectedRows
+        });
+      })
+    }
 
 menuPrompt()
