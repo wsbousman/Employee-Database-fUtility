@@ -75,17 +75,7 @@ const departmentPost = () => {
     ]).then((answer) => {
         const sql = `INSERT INTO departments (name) VALUES ('${answer.departmentName}')`;
         const params = [answer];
-        db.query(sql, params, (err, result) => {
-            if (err) {
-                console.log(err);
-            res.status(400).json({ error: err.message });
-            return;
-            }
-            res.json({
-              message: 'success',
-              data: body
-            });
-          });
+        db.query(sql, params);
           }).then(menuPrompt)
 }
 
@@ -104,17 +94,7 @@ const rolePost = () => {
     ]).then((answer) => {
         const sql = `INSERT INTO roles (description, salary) VALUES ('${answer.roleName}', '${answer.roleSalary}')`;
         const params = [answer];
-        db.query(sql, params, (err, result) => {
-            if (err) {
-                console.log(err);
-            res.status(400).json({ error: err.message });
-            return;
-            }
-            res.json({
-              message: 'success',
-              data: body
-            });
-          });
+        db.query(sql, params);
           }).then(menuPrompt)
 }
 
@@ -138,31 +118,15 @@ const employeePost = () => {
     ]).then((answer) => {
         const sql = `INSERT INTO employees (first_name, last_name, email) VALUES ('${answer.employeeFirstName}', '${answer.employeeLastName}', '${answer.employeeEmail}')`;
         const params = [answer];
-        db.query(sql, params, (err, result) => {
-            if (err) {
-                console.log(err);
-            res.status(400).json({ error: err.message });
-            return;
-            }
-            res.json({
-              message: 'success',
-              data: body
-            });
-          });
-          }).then(menuPrompt)
+        db.query(sql, params);
+    }).then(menuPrompt)
 }
 
 const employeePut = () => {
     const sql = `UPDATE employees SET role = ? 
                  WHERE id = ?`;
-    const params = [req.body.party_id, req.params.id];
-    db.query(sql, params, (err, result) => {
-        res.json({
-          message: 'success',
-          data: req.body,
-          changes: result.affectedRows
-        });
-      })
+    const params = [];
+    db.query(sql, params);
     }
 
 menuPrompt()
