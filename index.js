@@ -12,7 +12,6 @@ const menuPrompt = () => {
       name: 'menu',
       choices: ['view all departments', 'view all roles', 'view all employees', 'add a department', 'add a role', 'add an employee', 'update employee role'],
     }
-    // no entry validation required, not possible to advance to next step without valid input
 ]).then((answer) => {
     if (answer.menu === 'view all departments') {
     departmentView(answer)
@@ -74,9 +73,8 @@ const departmentPost = () => {
         }
     ]).then((answer) => {
         const sql = `INSERT INTO departments (name) VALUES ('${answer.departmentName}')`;
-        const params = [answer];
-        db.query(sql, params);
-          }).then(menuPrompt)
+        db.query(sql);
+        }).then(menuPrompt)
 }
 
 const rolePost = () => {
@@ -93,9 +91,8 @@ const rolePost = () => {
           }
     ]).then((answer) => {
         const sql = `INSERT INTO roles (description, salary) VALUES ('${answer.roleName}', '${answer.roleSalary}')`;
-        const params = [answer];
-        db.query(sql, params);
-          }).then(menuPrompt)
+        db.query(sql);
+        }).then(menuPrompt)
 }
 
 const employeePost = () => {
@@ -117,16 +114,38 @@ const employeePost = () => {
         }
     ]).then((answer) => {
         const sql = `INSERT INTO employees (first_name, last_name, email) VALUES ('${answer.employeeFirstName}', '${answer.employeeLastName}', '${answer.employeeEmail}')`;
-        const params = [answer];
-        db.query(sql, params);
+        db.query(sql)
     }).then(menuPrompt)
 }
 
 const employeePut = () => {
-    const sql = `UPDATE employees SET role = ? 
-                 WHERE id = ?`;
-    const params = [];
-    db.query(sql, params);
-    }
+    console.log("EMPLOYEES")
+    const sql1 = 'SELECT * FROM employees';
+    db.query(sql1, (err, rows) => {
+      if(err){console.error(err)}
+      if(rows){console.table(rows)}
+    console.log("ROLES");
+    const sql2 = 'SELECT * FROM roles';
+    db.query(sql2, (err, rows) => {
+      if(err){console.error(err)}
+      if(rows){console.table(rows)}
+    inquirer.prompt([
+        {
+          type: 'input',
+          message: 'Which employee ID number would you like to update?',
+          name: 'employeeId'
+        },
+        {
+          type: 'input',
+          message: 'What is their new role?',
+          name: 'newRole'
+        }
+    ]).then((answer) => {
+        const sql = `UPDATE employees SET role = ${answer.newRole} WHERE id = ${answer.employeeId}`;
+        db.query(sql);
+        })
+    })
+})
+}
 
 menuPrompt()

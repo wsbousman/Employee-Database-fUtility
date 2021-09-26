@@ -17,12 +17,12 @@ VALUES
 ('Social Media Curator', '$60,000/year'),
 ('Silver Tongued Devil', '$85,000/year');
 
-INSERT INTO employees (first_name, last_name, email)
+INSERT INTO employees (first_name, last_name, email, role_id)
 VALUES
-('Kris', 'Henderson', 'CHenderson86@hotmail.com'),
-('Joey', 'DeTomasso', 'BigJoe99@aol.net'),
-('Keenan', 'Duarte', 'Keekee@gmail.com'),
-('Jessica', 'Hartford', 'JHart44@gmail.com'),
-('Michael', 'Krieger', 'MikeKrieger102@yahoo.com'),
-('Louis', 'Ryan', 'LLRyanCo@Mailchimp.net'),
-('Elizabeth', 'Depailler', 'EDepailler11@gmail.com');
+('Kris', 'Henderson', 'CHenderson86@hotmail.com', 1),
+('Joey', 'DeTomasso', 'BigJoe99@aol.net', 2),
+('Keenan', 'Duarte', 'Keekee@gmail.com', 3),
+('Jessica', 'Hartford', 'JHart44@gmail.com', 5),
+('Michael', 'Krieger', 'MikeKrieger102@yahoo.com', 4),
+('Louis', 'Ryan', 'LLRyanCo@Mailchimp.net', 3),
+('Elizabeth', 'Depailler', 'EDepailler11@gmail.com', 6);
