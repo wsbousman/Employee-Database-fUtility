@@ -141,7 +141,7 @@ const employeePut = () => {
           name: 'newRole'
         }
     ]).then((answer) => {
-        const sql = `UPDATE employees SET role = ${answer.newRole} WHERE id = ${answer.employeeId}`;
+        const sql = `UPDATE employees SET roles = ${answer.newRole} WHERE id = ${answer.employeeId}`;
         db.query(sql);
         })
     })

@@ -17,7 +17,7 @@ VALUES
 ('Social Media Curator', '$60,000/year'),
 ('Silver Tongued Devil', '$85,000/year');
 
-INSERT INTO employees (first_name, last_name, email, role_id)
+INSERT INTO employees (first_name, last_name, email, roles_id)
 VALUES
 ('Kris', 'Henderson', 'CHenderson86@hotmail.com', 1),
 ('Joey', 'DeTomasso', 'BigJoe99@aol.net', 2),
