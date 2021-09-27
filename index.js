@@ -41,7 +41,7 @@ const departmentView = () => {
     const sql = 'SELECT * FROM departments';
     db.query(sql, (err, rows) => {
       if(err){console.error(err)}
-      if(rows){console.table(rows)}
+      if(rows){console.log('\n')};{console.log('DEPARTMENTS')};{console.table(rows)};
     });
     menuPrompt();
 }
@@ -50,18 +50,19 @@ const rolesView = () => {
     const sql = 'SELECT * FROM roles';
     db.query(sql, (err, rows) => {
       if(err){console.error(err)}
-      if(rows){console.table(rows)}
+      if(rows){console.log('\n')};{console.log('ROLES')};{console.table(rows)};
     });
     menuPrompt();
 }
 
 const employeesView = () => {
+    
     const sql = 'SELECT * FROM employees';
     db.query(sql, (err, rows) => {
       if(err){console.error(err)}
-      if(rows){console.table(rows)}
+      if(rows){console.log('\n')};{console.log('EMPLOYEES')};{console.table(rows)};
     });
-    menuPrompt();
+    menuPrompt()
 }
 
 const departmentPost = () => {
@@ -137,13 +138,13 @@ const employeePut = () => {
         },
         {
           type: 'input',
-          message: 'What is their new role?',
+          message: 'What is their new role ID number?',
           name: 'newRole'
         }
     ]).then((answer) => {
-        const sql = `UPDATE employees SET roles = ${answer.newRole} WHERE id = ${answer.employeeId}`;
+        const sql = `UPDATE employees SET roles_id = ${answer.newRole} WHERE id = ${answer.employeeId}`;
         db.query(sql);
-        })
+        }).then(menuPrompt)
     })
 })
 }
